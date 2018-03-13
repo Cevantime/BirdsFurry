@@ -1,48 +1,42 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/slingshot.png" type="Texture" id=1]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+[ext_resource path="res://scenes/Slingshot.gd" type="Script" id=1]
+[ext_resource path="res://assets/slingshot.png" type="Texture" id=2]
+[ext_resource path="res://assets/slingshot_2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Elastic.tscn" type="PackedScene" id=4]
 
 [node name="Slingshot" type="Node2D"]
 
+script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
+strength = 9
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="LaunchPoint" type="Position2D" parent="." index="1"]
+
+position = Vector2( 6.31122, -72.3871 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="." index="1"]
+[node name="Sprite2" type="Sprite" parent="." index="2"]
 
-position = Vector2( 5, -74 )
-node_a = NodePath("../LaunchPoint")
-node_b = NodePath("../Bird")
-bias = 0.0
-disable_collision = true
-length = 50.0
-rest_length = 0.0
-stiffness = 20.0
-damping = 1.0
+position = Vector2( -12.5735, -48.0964 )
+z_index = 10
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="LaunchPoint" type="StaticBody2D" parent="." index="2"]
+[node name="Elastic1" parent="." index="3" instance=ExtResource( 4 )]
 
-editor/display_folded = true
-position = Vector2( 7.18484, -75.4408 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 0
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Collision", "Transform" ]
+position = Vector2( 22.5936, -75.6289 )
+_sections_unfolded = [ "Z Index" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LaunchPoint" index="0"]
+[node name="Elastic2" parent="." index="4" instance=ExtResource( 4 )]
 
-shape = SubResource( 1 )
+position = Vector2( -16.1722, -67.5428 )
+z_index = 9
+_sections_unfolded = [ "Z Index" ]
 
 

@@ -1,46 +1,45 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/background_1.jpg" type="Texture" id=1]
-[ext_resource path="res://scenes/Slingshot.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Bird.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Level.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Spot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/background_1.jpg" type="Texture" id=3]
+[ext_resource path="res://scenes/Slingshot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Bird.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/blocks/WoodSquare.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/blocks/AverageWood.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 31.9734, 29.9184 )
 
-[node name="Level" type="CanvasLayer"]
+[sub_resource type="RectangleShape2D" id=2]
 
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+custom_solver_bias = 0.0
+extents = Vector2( 85.2982, 693.639 )
 
-[node name="TextureRect" type="TextureRect" parent="." index="0"]
+[node name="Level" type="Node2D"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -700.0
-margin_right = 1536.0
-margin_bottom = 140.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 1 )
-stretch_mode = 0
+script = ExtResource( 1 )
+spot_scene = ExtResource( 2 )
+min_zoom = 0.5
+max_zoom = 2.0
+ZOOM_SPEED = 5
 
-[node name="Slingshot" parent="." index="1" instance=ExtResource( 2 )]
+[node name="TextureRect" type="Sprite" parent="." index="0"]
+
+position = Vector2( 1280, 20 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Slingshot" parent="." index="1" instance=ExtResource( 4 )]
 
 position = Vector2( 548.799, 434.62 )
+strength = 9.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
 
+editor/display_folded = true
 position = Vector2( 1280.28, 642.59 )
 scale = Vector2( 40.0475, 3.26682 )
 input_pickable = false
@@ -58,8 +57,180 @@ shape = SubResource( 1 )
 
 [node name="Birds" type="Node2D" parent="." index="3"]
 
-[node name="Bird" parent="Birds" index="0" instance=ExtResource( 3 )]
+editor/display_folded = true
+
+[node name="Bird" parent="Birds" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 398.893, 499.724 )
+linear_damp = 0.0
+_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Pickable", "Transform" ]
+spot_scene = null
+
+[node name="Bird2" parent="Birds" index="1" instance=ExtResource( 5 )]
+
+position = Vector2( 297.893, 499.724 )
+linear_damp = 0.0
+_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Pickable", "Transform" ]
+spot_scene = null
+
+[node name="Bird3" parent="Birds" index="2" instance=ExtResource( 5 )]
+
+position = Vector2( 194.893, 499.724 )
+linear_damp = 0.0
+_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Pickable", "Transform" ]
+spot_scene = null
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+
+scale = Vector2( 1, 1.02446 )
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 2, 2 )
+limit_left = 0
+limit_top = -700
+limit_right = 2550
+limit_bottom = 730
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing", "Transform" ]
+
+[node name="TrajectoryTimer" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
+
+[node name="WallEast" type="StaticBody2D" parent="." index="6"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallEast" index="0"]
+
+position = Vector2( -86.5446, -12.3635 )
+shape = SubResource( 2 )
+
+[node name="WallWest" type="StaticBody2D" parent="." index="7"]
+
+editor/display_folded = true
+position = Vector2( 2730, 0 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallWest" index="0"]
+
+position = Vector2( -86.5446, -12.3635 )
+shape = SubResource( 2 )
+
+[node name="Blocks" type="Node2D" parent="." index="8"]
+
+position = Vector2( 1885.78, 445.999 )
+
+[node name="WoodSquare" parent="Blocks" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( -2.08142, -311.038 )
+contacts_reported = 0
+contact_monitor = false
+
+[node name="AverageWood" parent="Blocks" index="1" instance=ExtResource( 7 )]
+
+position = Vector2( 67.5256, -79.8029 )
+
+[node name="AverageWood11" parent="Blocks" index="2" instance=ExtResource( 7 )]
+
+position = Vector2( 82.2583, -259.053 )
+
+[node name="AverageWood13" parent="Blocks" index="3" instance=ExtResource( 7 )]
+
+position = Vector2( -78.5751, -260.28 )
+
+[node name="AverageWood14" parent="Blocks" index="4" instance=ExtResource( 7 )]
+
+position = Vector2( -90.8527, -81.0307 )
+
+[node name="AverageWood2" parent="Blocks" index="5" instance=ExtResource( 7 )]
+
+position = Vector2( -160.834, 11.0497 )
+rotation = 1.5708
+
+[node name="AverageWood3" parent="Blocks" index="6" instance=ExtResource( 7 )]
+
+position = Vector2( -6.13892, 9.8219 )
+rotation = 1.5708
+
+[node name="AverageWood4" parent="Blocks" index="7" instance=ExtResource( 7 )]
+
+position = Vector2( 137.507, 11.0496 )
+rotation = 1.5708
+
+[node name="AverageWood5" parent="Blocks" index="8" instance=ExtResource( 7 )]
+
+position = Vector2( 56.4758, -170.655 )
+rotation = 1.5708
+
+[node name="AverageWood6" parent="Blocks" index="9" instance=ExtResource( 7 )]
+
+position = Vector2( -61.3868, -169.428 )
+rotation = 1.5708
+
+[node name="AverageWood9" parent="Blocks" index="10" instance=ExtResource( 7 )]
+
+position = Vector2( -462.231, 22.6745 )
+rotation = 1.5708
+
+[node name="AverageWood7" parent="Blocks" index="11" instance=ExtResource( 7 )]
+
+position = Vector2( 69.9808, 8.59418 )
+rotation = 1.5708
+
+[node name="AverageWood8" parent="Blocks" index="12" instance=ExtResource( 7 )]
+
+position = Vector2( -84.7139, 7.36642 )
+rotation = 1.5708
+
+[connection signal="crashed" from="Birds/Bird" to="." method="_on_Bird_crashed"]
+
+[connection signal="launched" from="Birds/Bird" to="." method="_on_Bird_launched"]
+
+[connection signal="touched" from="Birds/Bird" to="." method="_on_Bird_touched"]
+
+[connection signal="crashed" from="Birds/Bird2" to="." method="_on_Bird_crashed"]
+
+[connection signal="launched" from="Birds/Bird2" to="." method="_on_Bird_launched"]
+
+[connection signal="touched" from="Birds/Bird2" to="." method="_on_Bird_touched"]
+
+[connection signal="crashed" from="Birds/Bird3" to="." method="_on_Bird_crashed"]
+
+[connection signal="launched" from="Birds/Bird3" to="." method="_on_Bird_launched"]
+
+[connection signal="touched" from="Birds/Bird3" to="." method="_on_Bird_touched"]
+
+[connection signal="timeout" from="TrajectoryTimer" to="." method="_on_TrajectoryTimer_timeout"]
 
 
