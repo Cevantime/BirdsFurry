@@ -8,16 +8,16 @@ var spots = []
 var birds = []
 
 export(PackedScene) var spot_scene
-export(float) var min_zoom = 0.5
-export(float) var max_zoom = 2
-export(int, 1, 20) var ZOOM_SPEED = 5
+export(float) var zoom_min = 0.5
+export(float) var zoom_max = 2
+export(int, 1, 20) var zoom_speed = 5
 
 func _ready():
 	camera = $Camera2D
 	birds = $Birds.get_children()
 	change_bird()
 	camera.current = true
-	camera.position = bird.position
+	camera.position = $Slingshot/LaunchPoint.global_position
 	bird.attach_to($Slingshot)
 	old_mouse_pos = get_global_mouse_position()
 
@@ -28,13 +28,7 @@ func _process(delta):
 	if(drag_cam) :
 		camera.position -= d_cam_pos
 	
-	var zoom_s = Vector2(1,1)
-	zoom_s *= 0.1 * delta * ZOOM_SPEED
-	
-	if Input.is_action_pressed("zoom_in") :
-		camera.zoom -= zoom_s
-	if Input.is_action_pressed("zoom_out"):
-		camera.zoom += zoom_s
+		
 	if Input.is_action_just_pressed("drag_cam"):
 		drag_cam = true
 	if Input.is_action_just_released("drag_cam"):
@@ -57,15 +51,15 @@ func change_bird():
 		camera.position = bird.position
 
 func clamp_zoom():
-	if camera.zoom.x > max_zoom:
-		camera.zoom = Vector2(max_zoom,max_zoom)
-	elif camera.zoom.y < min_zoom:
-		camera.zoom = Vector2(min_zoom, min_zoom)
+	if camera.zoom.x > zoom_max:
+		camera.zoom = Vector2(zoom_max,zoom_max)
+	elif camera.zoom.y < zoom_min:
+		camera.zoom = Vector2(zoom_min, zoom_min)
 		
 
 func _input(event):
 	var zoom_s = Vector2(1,1)
-	zoom_s *= 0.01 * ZOOM_SPEED
+	zoom_s *= 0.01 * zoom_speed
 	if event.is_action("zoom_in") :
 		camera.zoom -= zoom_s
 	if event.is_action("zoom_out") :

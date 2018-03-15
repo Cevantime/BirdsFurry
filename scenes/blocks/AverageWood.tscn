@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/blocks/Block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Block.tscn" type="PackedScene" id=1]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 79.1981, 8.74948 )
 
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="StreamTexture" id=2]
 
 flags = 4
 load_path = "res://.import/blocks.png-685c13156444a7a1452ea08f4bf9c1af.stex"
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 
 script/source = "extends Node
 
@@ -21,18 +21,20 @@ export var regions = []
 
 [node name="AverageWood" instance=ExtResource( 1 )]
 
+max_health = 20
+
 [node name="CollisionShape2D" parent="." index="0"]
 
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Texture" parent="." index="1"]
 
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 region_rect = Rect2( 792, 560, 161.25, 20.25 )
 
 [node name="TexturesRects" parent="." index="2"]
 
-script = SubResource( 4 )
+script = SubResource( 3 )
 regions = [ Rect2( 792, 560, 161.75, 21 ), Rect2( 630, 601, 161.75, 21 ), Rect2( 791, 622, 161.75, 21 ), Rect2( 630, 665, 161.75, 21 ) ]
 
 

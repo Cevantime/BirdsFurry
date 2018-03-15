@@ -32,7 +32,7 @@ func update_elastic_pos(elactic) :
 	var middle_front = diff * 0.5
 	var sprite = elactic.get_node("Elastic");
 	sprite.position = middle_front
-	sprite.scale.x = - middle_front.length() * 0.0075
+	sprite.scale.x = - middle_front.length() * 0.01
 	sprite.rotation = middle_front.angle()
 	
 
