@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Bird.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Spot.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/birds.png" type="Texture" id=3]
+[ext_resource path="res://scenes/effects/ExplosionBlock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/gameplay/birds.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -28,7 +28,9 @@ tracks/0/keys = {
 "values": [ Rect2( 86.5, 5.25, 78.75, 79.25 ), Rect2( 6.5, 5.25, 78.75, 79.25 ), Rect2( 86.5, 5.25, 78.75, 79.25 ) ]
 }
 
-[node name="Bird" type="RigidBody2D"]
+[node name="Bird" type="RigidBody2D" groups=[
+"Birds",
+]]
 
 input_pickable = true
 collision_layer = 1
@@ -45,12 +47,16 @@ contact_monitor = true
 sleeping = false
 can_sleep = false
 linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
+linear_damp = 0.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Applied Forces", "Pickable", "Transform" ]
-spot_scene = ExtResource( 2 )
+_sections_unfolded = [ "Applied Forces", "Linear", "Pickable", "Transform" ]
+max_health = 10
+damage_intensity = 40
+explosion_scene = ExtResource( 2 )
+score_value = 0
+remaining_score = 5000
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -88,7 +94,7 @@ autostart = false
 
 [node name="AttachPoint" type="Position2D" parent="." index="4"]
 
-position = Vector2( -28.7394, 0 )
+position = Vector2( -27, 0 )
 
 [connection signal="timeout" from="AnimationTimer" to="." method="_on_AnimationTimer_timeout"]
 

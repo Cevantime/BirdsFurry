@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background_1.jpg-54de9d695775bbea7fc9a7ef18821aba.stex"
+path="res://.import/energy_bar_fill.png-8f3fbf243c545e9f30bd17e2659a05c4.stex"
 
 [deps]
 
-source_file="res://assets/background_1.jpg"
-source_md5="74e338fc5e12f2f855f8ac72280c8997"
+source_file="res://assets/GUI/energy_bar_fill.png"
+source_md5="34cb5bf422233cf803cb46fecec0a333"
 
-dest_files=[ "res://.import/background_1.jpg-54de9d695775bbea7fc9a7ef18821aba.stex" ]
-dest_md5="1cb77cc594decfdf5c0d4d93a69ab1b7"
+dest_files=[ "res://.import/energy_bar_fill.png-8f3fbf243c545e9f30bd17e2659a05c4.stex" ]
+dest_md5="f97997fcee164c3b5d59980228b1c538"
 
 [params]
 

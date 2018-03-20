@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends "Damageable.gd"
 
 enum {
 	STATE_IDLE = 1, 
@@ -15,7 +15,7 @@ var attached_slingshot = null
 
 var initial_impulse = null
 
-export(PackedScene) var spot_scene
+export(int,0,100000) var remaining_score = 5000
 
 onready var player_force = Vector2(0,0)
 
@@ -24,23 +24,32 @@ signal crashed
 signal touched
 
 func _ready():
-	randomize()
 	$AnimationTimer.wait_time = randf() * 3
 	$AnimationTimer.start()
 
 func _process(delta):
 	
 	if Input.is_action_just_released("touch") :
-		if state == STATE_DRAGGED :
-			state = STATE_BEING_LAUNCHED
+		if state == STATE_DRAGGED && attached_slingshot != null :
 			initial_impulse = get_impulse()
+			if(initial_impulse.x < 0):
+				state = STATE_IDLE
+			else :
+				state = STATE_BEING_LAUNCHED
+
+	
+func get_old_velocity():
+	return old_velocity
+	
+func get_remaining_score():
+	return remaining_score
 
 func _integrate_forces(s):
 	if is_attached() :
 		var lv = Vector2(0,0)
 		
-		var attached_point = attached_slingshot.get_node("LaunchPoint")
-		lv = (attached_point.position + attached_slingshot.position - position) * 50
+		var launch_point = attached_slingshot.get_node("LaunchPoint")
+		lv = (launch_point.global_position - global_position) * 50
 		
 		var impulse = get_impulse()
 		
@@ -58,12 +67,11 @@ func _integrate_forces(s):
 			rotation = impulse.angle()
 		
 		if state == STATE_BEING_LAUNCHED:
-			var diff_pos = (attached_point.position + attached_slingshot.position - position)
-			print(diff_pos.length())
-			if(diff_pos.length() < 4) :
+			var diff_pos = (launch_point.global_position - global_position)
+			if(diff_pos.length() < 1) :
 				lv = initial_impulse
 				initial_impulse = null
-				launch(lv)	
+				launch(lv)
 			
 			
 		s.set_linear_velocity(lv)
@@ -125,6 +133,5 @@ func _on_AnimationTimer_timeout():
 func _on_Body_entered(other):
 	if(is_launched()):
 		touch()
-	if(other.has_method("get_damage")):
-		var damage = mass * linear_velocity.length() / 40
-		other.get_damage(damage)
+	if(other.has_method("get_damage_from")):
+		other.get_damage_from(self)

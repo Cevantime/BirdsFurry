@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Slingshot.gd" type="Script" id=1]
-[ext_resource path="res://assets/slingshot.png" type="Texture" id=2]
-[ext_resource path="res://assets/slingshot_2.png" type="Texture" id=3]
+[ext_resource path="res://assets/gameplay/slingshot.png" type="Texture" id=2]
+[ext_resource path="res://assets/gameplay/slingshot_2.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Elastic.tscn" type="PackedScene" id=4]
+
 
 [node name="Slingshot" type="Node2D"]
 

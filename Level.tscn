@@ -2,12 +2,15 @@
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Spot.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/background_1.jpg" type="Texture" id=3]
-[ext_resource path="res://scenes/Slingshot.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/blocks/WoodSquare.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/smokes.png" type="Texture" id=6]
-[ext_resource path="res://scenes/blocks/AverageWood.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/gameplay/background_1.jpg" type="Texture" id=3]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/GameOver.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/EndLevel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Slingshot.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Bird.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/blocks/AverageWood.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/blocks/WoodSquare.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/ennemies/LittleGreen.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -19,72 +22,41 @@ extents = Vector2( 31.9734, 29.9184 )
 custom_solver_bias = 0.0
 extents = Vector2( 85.2982, 693.639 )
 
-[sub_resource type="GDScript" id=3]
-
-script/source = "extends Sprite
-
-func _ready():
-	$Timer.start()
-	
-
-func _on_Timer_timeout():
-	queue_free()
-"
-
-[sub_resource type="Animation" id=4]
-
-resource_name = "white"
-length = 0.35
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Rect2( 913, 248, 42, 42 ), Rect2( 859.5, 878, 49.5, 47.5 ), Rect2( 502, 561, 88, 80 ), Rect2( 1.5, 820.75, 114.5, 113.5 ), Rect2( -2, 586, 129, 123 ), Rect2( -7, 462, 133, 126 ), Rect2( 128, 152, 144, 140 ), Rect2( 407, 153, 127, 122 ) ]
-}
-
-[sub_resource type="PackedScene" id=5]
-
-_bundled = {
-"conn_count": 1,
-"conns": PoolIntArray( 2, 0, 23, 22, 2, 0 ),
-"editable_instances": [  ],
-"names": PoolStringArray( "ExplosionBlock", "position", "scale", "texture", "region_enabled", "region_rect", "script", "_sections_unfolded", "Sprite", "AnimationPlayer", "root_node", "autoplay", "playback_process_mode", "playback_default_blend_time", "playback_speed", "anims/white", "blend_times", "Timer", "process_mode", "wait_time", "one_shot", "autostart", "_on_Timer_timeout", "timeout" ),
-"node_count": 3,
-"node_paths": [  ],
-"nodes": PoolIntArray( -1, -1, 8, 0, -1, 7, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 0, 0, 0, 9, 262153, -1, 7, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 12, 16, 13, 0, 0, 0, 17, 524305, -1, 4, 18, 9, 19, 14, 20, 15, 21, 15, 0 ),
-"variants": [ Vector2( 242.321, 173.681 ), Vector2( 0.7, 0.7 ), ExtResource( 6 ), true, Rect2( 407, 153, 127, 122 ), SubResource( 3 ), [ "Region", "Textures", "Transform" ], NodePath(".."), "white", 1, 0.0, 1.0, SubResource( 4 ), [  ], 0.35, false ],
-"version": 2
-}
-
-[node name="Level" type="Node2D" index="0"]
+[node name="Level" type="Node" index="0"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 spot_scene = ExtResource( 2 )
 zoom_min = 0.5
 zoom_max = 2
 zoom_speed = 5
 
-[node name="TextureRect" type="Sprite" parent="." index="0"]
+[node name="Background" type="Sprite" parent="." index="0"]
 
-position = Vector2( 1280, 20 )
+position = Vector2( 1277.24, 719.248 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Slingshot" parent="." index="1" instance=ExtResource( 4 )]
+[node name="GUI" parent="." index="1" instance=ExtResource( 4 )]
 
-position = Vector2( 548.799, 434.62 )
+[node name="GameOver" parent="." index="2" instance=ExtResource( 5 )]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
+[node name="EndLevel" parent="." index="3" instance=ExtResource( 6 )]
 
-position = Vector2( 1280.28, 642.59 )
+score_steps = {
+"1": 10000,
+"2": 15000,
+"3": 20000
+}
+
+[node name="Slingshot" parent="." index="4" instance=ExtResource( 7 )]
+
+position = Vector2( 574.099, 1143.54 )
+
+[node name="Ground" type="StaticBody2D" parent="." index="5"]
+
+editor/display_folded = true
+position = Vector2( 1283.66, 1352.21 )
 scale = Vector2( 40.0475, 3.26682 )
 input_pickable = false
 collision_layer = 1
@@ -95,21 +67,22 @@ friction = 1.0
 bounce = 0.0
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" index="0"]
 
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="." index="3"]
+[node name="Camera2D" type="Camera2D" parent="." index="6"]
 
+position = Vector2( 555.11, 362.233 )
 scale = Vector2( 1, 1.02446 )
 anchor_mode = 1
 rotating = false
-current = false
+current = true
 zoom = Vector2( 2, 2 )
 limit_left = 0
-limit_top = -700
+limit_top = 0
 limit_right = 2550
-limit_bottom = 730
+limit_bottom = 1400
 limit_smoothed = false
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
@@ -126,16 +99,31 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing", "Transform" ]
 
-[node name="TrajectoryTimer" type="Timer" parent="." index="4"]
+[node name="BirdchangeTimer" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="TrajectoryTimer" type="Timer" parent="." index="8"]
 
 process_mode = 1
 wait_time = 0.5
 one_shot = false
 autostart = false
 
-[node name="WallEast" type="StaticBody2D" parent="." index="5"]
+[node name="EndLevelTimer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="WallEast" type="StaticBody2D" parent="." index="10"]
 
 editor/display_folded = true
+position = Vector2( 4, 770.026 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -149,10 +137,10 @@ bounce = 0.0
 position = Vector2( -86.5446, -12.3635 )
 shape = SubResource( 2 )
 
-[node name="WallWest" type="StaticBody2D" parent="." index="6"]
+[node name="WallWest" type="StaticBody2D" parent="." index="11"]
 
 editor/display_folded = true
-position = Vector2( 2730, 0 )
+position = Vector2( 2737.41, 769.46 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -166,111 +154,85 @@ bounce = 0.0
 position = Vector2( -86.5446, -12.3635 )
 shape = SubResource( 2 )
 
-[node name="Blocks" type="Node2D" parent="." index="7"]
+[node name="Birds" type="Node2D" parent="." index="12"]
 
 editor/display_folded = true
-position = Vector2( 1885.78, 445.999 )
-
-[node name="WoodSquare" parent="Blocks" index="0" instance=ExtResource( 5 )]
-
-position = Vector2( 4.21997, -93.364 )
-explosion = SubResource( 5 )
-
-[node name="WoodSquare2" parent="Blocks" index="1" instance=ExtResource( 5 )]
-
-position = Vector2( 14.22, 54.001 )
-explosion = SubResource( 5 )
-
-[node name="WoodSquare3" parent="Blocks" index="2" instance=ExtResource( 5 )]
-
-position = Vector2( -45.78, -17.8765 )
-explosion = SubResource( 5 )
-
-[node name="WoodSquare4" parent="Blocks" index="3" instance=ExtResource( 5 )]
-
-position = Vector2( 64.22, -19.6815 )
-explosion = SubResource( 5 )
-
-[node name="WoodSquare5" parent="Blocks" index="4" instance=ExtResource( 5 )]
-
-position = Vector2( 124.22, 54.001 )
-explosion = SubResource( 5 )
-
-[node name="WoodSquare6" parent="Blocks" index="5" instance=ExtResource( 5 )]
-
-position = Vector2( -95.78, 54.001 )
-explosion = SubResource( 5 )
-
-[node name="AverageWood" parent="Blocks" index="6" instance=ExtResource( 7 )]
-
-position = Vector2( 6.57544, -140.744 )
-
-[node name="AverageWood5" parent="Blocks" index="7" instance=ExtResource( 7 )]
-
-position = Vector2( 0.852539, -328.038 )
-
-[node name="AverageWood6" parent="Blocks" index="8" instance=ExtResource( 7 )]
-
-position = Vector2( 1.57849, -312.303 )
-
-[node name="AverageWood2" parent="Blocks" index="9" instance=ExtResource( 7 )]
-
-position = Vector2( 72.9944, -226.408 )
-rotation = -1.59064
-
-[node name="AverageWood3" parent="Blocks" index="10" instance=ExtResource( 7 )]
-
-position = Vector2( 4.44543, -225.817 )
-rotation = -1.59064
-
-[node name="AverageWood4" parent="Blocks" index="11" instance=ExtResource( 7 )]
-
-position = Vector2( -67.6294, -225.799 )
-rotation = -1.59064
-
-[node name="Birds" type="Node2D" parent="." index="8"]
-
-editor/display_folded = true
+position = Vector2( 297.218, 1201.1 )
 
 [node name="Bird" parent="Birds" index="0" instance=ExtResource( 8 )]
 
-position = Vector2( 398.893, 499.724 )
-linear_damp = 0.0
-_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Pickable", "Transform" ]
-spot_scene = null
+position = Vector2( 130.244, 10.0701 )
 
 [node name="Bird2" parent="Birds" index="1" instance=ExtResource( 8 )]
 
-position = Vector2( 297.893, 499.724 )
-linear_damp = 0.0
-_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Pickable", "Transform" ]
-spot_scene = null
+position = Vector2( 15.105, 12.5875 )
 
 [node name="Bird3" parent="Birds" index="2" instance=ExtResource( 8 )]
 
-position = Vector2( 194.893, 499.724 )
-linear_damp = 0.0
-_sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Pickable", "Transform" ]
-spot_scene = null
+position = Vector2( -105.735, 17.6226 )
+
+[node name="Blocks" type="Node2D" parent="." index="13"]
+
+editor/display_folded = true
+position = Vector2( 1916.67, 1010.1 )
+
+[node name="AverageWood2" parent="Blocks" index="0" instance=ExtResource( 9 )]
+
+position = Vector2( -77.8959, 235.251 )
+
+[node name="AverageWood3" parent="Blocks" index="1" instance=ExtResource( 9 )]
+
+position = Vector2( -77.8959, 63.2239 )
+
+[node name="AverageWood4" parent="Blocks" index="2" instance=ExtResource( 9 )]
+
+position = Vector2( -146.373, 148.402 )
+rotation = 1.5708
+_sections_unfolded = [ "Transform" ]
+
+[node name="AverageWood6" parent="Blocks" index="3" instance=ExtResource( 9 )]
+
+position = Vector2( -7.7489, 148.402 )
+rotation = 1.5708
+_sections_unfolded = [ "Transform" ]
+
+[node name="WoodSquare" parent="Blocks" index="4" instance=ExtResource( 10 )]
+
+position = Vector2( -146.975, 16.7017 )
+
+[node name="WoodSquare2" parent="Blocks" index="5" instance=ExtResource( 10 )]
+
+position = Vector2( -10.021, 15.0315 )
+
+[node name="Ennemies" type="Node2D" parent="." index="14"]
+
+editor/display_folded = true
+position = Vector2( 1964.4, 1205.71 )
+
+[node name="Ennemy" parent="Ennemies" index="0" instance=ExtResource( 11 )]
+
+position = Vector2( -96.8696, -1.67017 )
+damage_intensity = 20
+
+[node name="Tween" type="Tween" parent="." index="15"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="game_ended" from="GUI" to="." method="_on_GUI_game_ended"]
+
+[connection signal="game_restarted" from="GameOver" to="." method="_on_GameOver_game_restarted"]
+
+[connection signal="game_restarted" from="EndLevel" to="." method="_on_EndLevel_game_restarted"]
+
+[connection signal="timeout" from="BirdchangeTimer" to="." method="_on_BirdchangeTimer_timeout"]
 
 [connection signal="timeout" from="TrajectoryTimer" to="." method="_on_TrajectoryTimer_timeout"]
 
-[connection signal="crashed" from="Birds/Bird" to="." method="_on_Bird_crashed"]
-
-[connection signal="launched" from="Birds/Bird" to="." method="_on_Bird_launched"]
-
-[connection signal="touched" from="Birds/Bird" to="." method="_on_Bird_touched"]
-
-[connection signal="crashed" from="Birds/Bird2" to="." method="_on_Bird_crashed"]
-
-[connection signal="launched" from="Birds/Bird2" to="." method="_on_Bird_launched"]
-
-[connection signal="touched" from="Birds/Bird2" to="." method="_on_Bird_touched"]
-
-[connection signal="crashed" from="Birds/Bird3" to="." method="_on_Bird_crashed"]
-
-[connection signal="launched" from="Birds/Bird3" to="." method="_on_Bird_launched"]
-
-[connection signal="touched" from="Birds/Bird3" to="." method="_on_Bird_touched"]
+[connection signal="timeout" from="EndLevelTimer" to="." method="_on_EndLevelTimer_timeout"]
 
 

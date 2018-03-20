@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slingshot_2.png-3c019e22b83fa8c4e45a75e2febfe696.stex"
+path="res://.import/slingshot.png-7ad630e85b33ee6d694459c127c26249.stex"
 
 [deps]
 
-source_file="res://assets/slingshot_2.png"
-source_md5="2ef3dfac37e2c9dd9e7c63056e8584ed"
+source_file="res://assets/gameplay/slingshot.png"
+source_md5="9b68f11fa879e3a4bfa73a050886380a"
 
-dest_files=[ "res://.import/slingshot_2.png-3c019e22b83fa8c4e45a75e2febfe696.stex" ]
-dest_md5="f46c9fbfe53751bfb50e79253952b23a"
+dest_files=[ "res://.import/slingshot.png-7ad630e85b33ee6d694459c127c26249.stex" ]
+dest_md5="33f67c4073134b1e5f2db6f19d50f64a"
 
 [params]
 

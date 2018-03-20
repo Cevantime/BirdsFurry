@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blocks.png-685c13156444a7a1452ea08f4bf9c1af.stex"
+path="res://.import/energy_bar_bg.png-631cba896b660d861406b09759800e93.stex"
 
 [deps]
 
-source_file="res://assets/blocks.png"
-source_md5="e0d66c94ce5cc0ee9538cad7c91caf55"
+source_file="res://assets/GUI/energy_bar_bg.png"
+source_md5="b57ae8662f855dbbf3a188c7b28b8c7b"
 
-dest_files=[ "res://.import/blocks.png-685c13156444a7a1452ea08f4bf9c1af.stex" ]
-dest_md5="d0c734e82d9f6f7160aeaad3a3f0a598"
+dest_files=[ "res://.import/energy_bar_bg.png-631cba896b660d861406b09759800e93.stex" ]
+dest_md5="f2a0f87e16dc108311e7e90f8c8b436c"
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/birds.png-17f92191261b92a883ab0a85c3bac928.stex"
+path="res://.import/smokes.png-ca713841f7f5755944fdeaab56220bfc.stex"
 
 [deps]
 
-source_file="res://assets/birds.png"
-source_md5="02c6aa26644499d8377848933699a562"
+source_file="res://assets/gameplay/smokes.png"
+source_md5="b7e828d5ddc55416fed1d99fccd8f5e7"
 
-dest_files=[ "res://.import/birds.png-17f92191261b92a883ab0a85c3bac928.stex" ]
-dest_md5="617a2b17aed4aab4262da15e80105a43"
+dest_files=[ "res://.import/smokes.png-ca713841f7f5755944fdeaab56220bfc.stex" ]
+dest_md5="c22bdfa6afe22309809e65e07b6d3615"
 
 [params]
 
