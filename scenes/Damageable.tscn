@@ -1,44 +1,27 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/Damageable.gd" type="Script" id=1]
-[ext_resource path="res://scenes/effects/ExplosionBlock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/gameplay/birds.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.253
 
-custom_solver_bias = 0.0
-extents = Vector2( 38.6695, 36.7358 )
-
-[node name="Damageable" type="RigidBody2D"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 0
-mass = 0.6
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 5
+[node name="Damageable" type="RigidBody2D" groups=[
+"Damageable",
+]]
+contacts_reported = 7
 contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
 script = ExtResource( 1 )
-max_health = 10
-damage_intensity = 20
-explosion_scene = ExtResource( 2 )
-score_value = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+[node name="Texture" type="Sprite" parent="."]
+position = Vector2( -3.90137, -4.38904 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 86.5, 7.875, 78.5, 76.125 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_Damageable_body_entered"]
-
-

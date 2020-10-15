@@ -1,43 +1,35 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Slingshot.gd" type="Script" id=1]
-[ext_resource path="res://assets/gameplay/slingshot.png" type="Texture" id=2]
-[ext_resource path="res://assets/gameplay/slingshot_2.png" type="Texture" id=3]
-[ext_resource path="res://scenes/Elastic.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Spot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/gameplay/slingshot.png" type="Texture" id=3]
+[ext_resource path="res://assets/gameplay/slingshot_2.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Elastic.tscn" type="PackedScene" id=5]
 
 [node name="Slingshot" type="Node2D"]
-
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-strength = 6
-strechness = 5
+spot_scene = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
-
-[node name="LaunchPoint" type="Position2D" parent="." index="1"]
-
-position = Vector2( 6.31122, -72.3871 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Sprite2" type="Sprite" parent="." index="2"]
-
-position = Vector2( -12.5735, -48.0964 )
-z_index = 10
+[node name="SlingshotBack" type="Sprite" parent="."]
+position = Vector2( -9.8618, -0.508491 )
+z_index = -1
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Elastic1" parent="." index="3" instance=ExtResource( 4 )]
+[node name="SlingshotFront" type="Sprite" parent="."]
+position = Vector2( -21.9206, -48.824 )
+z_index = 1
+texture = ExtResource( 4 )
 
-position = Vector2( 22.5936, -75.6289 )
-_sections_unfolded = [ "Z Index" ]
+[node name="LaunchPoint" type="Position2D" parent="."]
+position = Vector2( -2.20529, -72.0394 )
 
-[node name="Elastic2" parent="." index="4" instance=ExtResource( 4 )]
+[node name="ElasticBack" parent="." instance=ExtResource( 5 )]
+position = Vector2( 13.2038, -75.2618 )
+z_index = -1
 
-position = Vector2( -16.1722, -67.5428 )
-z_index = 9
-_sections_unfolded = [ "Z Index" ]
+[node name="ElasticFront" parent="." instance=ExtResource( 5 )]
+position = Vector2( -31.6892, -62.4981 )
 
+[node name="Trajectory" type="Node2D" parent="."]
+position = Vector2( -2.20529, -72.0394 )
 

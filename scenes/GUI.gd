@@ -1,35 +1,35 @@
 extends CanvasLayer
 
-signal game_ended
+onready var score_progress = $MarginContainer/VBoxContainer/NinePatchRect/HBoxLeft/ScoreProgress
+onready var score_max_label = $MarginContainer/VBoxContainer/NinePatchRect/HBoxRight/ScoreMax
+onready var score_value_label = $MarginContainer/VBoxContainer/NinePatchRect/HBoxRight/ScoreValue
+onready var tween_score = $TweenScore
+onready var end_button = $MarginContainer/VBoxContainer/EndButton
 
-onready var container1 = $MarginContainer/VBoxContainer/MarginContainer/MarginContainer/HBoxContainer
-onready var container2 = $MarginContainer/VBoxContainer/HBoxContainer2
-onready var scoreProgress = container1.get_node("ScoreProgress")
-onready var scoreMax = container1.get_node("ScoreMax")
-onready var scoreValue = container1.get_node("ScoreValue")
-onready var endLevelButton = container2.get_node("EndLevelButton")
+var animated_score = 0
+
+signal end_game
 
 func _ready():
-	endLevelButton.hide()
-
-func set_score(score):
-	scoreValue.text = str(int(score))
-	scoreProgress.value = int(score)
+	end_button.self_modulate.a = 0
+	end_button.disabled = true
 	
-func set_max_score(max_score):
-	scoreMax.text = str(max_score)
-	scoreProgress.max_value = max_score
+func _process(delta):
+	score_progress.value = animated_score
+	score_value_label.text = str(int(animated_score))
 
-func _on_EndLevelButton_pressed():
-	endLevelButton.hide()
-	emit_signal("game_ended")
+func set_max_score(score_max):
+	score_progress.max_value = score_max
+	score_max_label.text = str(score_max)
+	
+func set_score(score):
+	tween_score.interpolate_property(self, "animated_score", animated_score, score, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	if not tween_score.is_active():
+		tween_score.start()
+	
+func display_end_button():
+	end_button.self_modulate.a = 1
+	end_button.disabled = false
 
-func display_end_control():
-	endLevelButton.show()
-
-func hide():
-	for child in get_children():
-		if child.has_method("hide") : child.hide()
-func show():
-	for child in get_children():
-		if child.has_method("show") : child.show()
+func _on_EndButton_pressed():
+	emit_signal("end_game")

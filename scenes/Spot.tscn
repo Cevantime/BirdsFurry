@@ -4,8 +4,8 @@
 
 [node name="Spot" type="Sprite"]
 
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+_sections_unfolded = [ "Transform" ]
 
 

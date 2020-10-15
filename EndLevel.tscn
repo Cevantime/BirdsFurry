@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://EndLevel.gd" type="Script" id=1]
+[ext_resource path="res://assets/GUI/slot_start_1.png" type="Texture" id=2]
+[ext_resource path="res://assets/GUI/slot_start_2.png" type="Texture" id=3]
+[ext_resource path="res://assets/GUI/slot_start_3.png" type="Texture" id=4]
+[ext_resource path="res://assets/GUI/star_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/GUI/star_2.png" type="Texture" id=6]
+[ext_resource path="res://assets/GUI/star_3.png" type="Texture" id=7]
+[ext_resource path="res://assets/GUI/RammettoOne-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://scenes/RestartButton.tscn" type="PackedScene" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 35
+font_data = ExtResource( 8 )
+
+[node name="EndLevel" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.705882 )
+
+[node name="SlotStar1" type="TextureRect" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -226.788
+margin_top = -81.7288
+margin_right = -107.788
+margin_bottom = 48.2712
+texture = ExtResource( 2 )
+
+[node name="SlotStar2" type="TextureRect" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -78.5
+margin_top = -46.2966
+margin_right = 78.5
+margin_bottom = 91.7034
+texture = ExtResource( 3 )
+
+[node name="SlotStar3" type="TextureRect" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 101.508
+margin_top = -78.5339
+margin_right = 223.508
+margin_bottom = 47.4661
+texture = ExtResource( 4 )
+
+[node name="Star1" type="TextureRect" parent="Background"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.051
+margin_top = -144.017
+margin_right = -99.0507
+margin_bottom = 57.9831
+texture = ExtResource( 5 )
+
+[node name="Star2" type="TextureRect" parent="Background"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -111.5
+margin_top = -115.5
+margin_right = 111.5
+margin_bottom = 115.5
+texture = ExtResource( 6 )
+
+[node name="Star3" type="TextureRect" parent="Background"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 94.7963
+margin_top = -146.102
+margin_right = 282.796
+margin_bottom = 52.8983
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -171.127
+margin_bottom = -111.127
+custom_fonts/font = SubResource( 1 )
+text = "20000"
+align = 1
+valign = 1
+
+[node name="RestartButton" parent="Background" instance=ExtResource( 9 )]
+
+[node name="TweenScore" type="Tween" parent="."]
+
+[connection signal="pressed" from="Background/RestartButton" to="." method="_on_RestartButton_pressed"]

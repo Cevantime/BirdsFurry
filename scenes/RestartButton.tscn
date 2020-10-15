@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/GUI/btn_restart_small.png" type="Texture" id=1]
+
+[node name="RestartButton" type="TextureButton"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -27.0
+margin_top = -83.2881
+margin_right = 27.0
+margin_bottom = -26.2881
+texture_normal = ExtResource( 1 )
+

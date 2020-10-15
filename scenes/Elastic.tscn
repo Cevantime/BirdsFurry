@@ -4,15 +4,12 @@
 
 [node name="Elastic" type="Node2D"]
 
-[node name="Elastic" type="Sprite" parent="." index="0"]
+[node name="Sprite" type="Sprite" parent="." index="0"]
 
 scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ElasticPoint" type="Position2D" parent="." index="1"]
-
-z_index = 11
-_sections_unfolded = [ "Transform", "Z Index" ]
+[node name="FixationPoint" type="Position2D" parent="." index="1"]
 
 

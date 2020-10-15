@@ -1,151 +1,116 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Spot.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/gameplay/background_1.jpg" type="Texture" id=3]
-[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/blocks/WoodSquare.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/GameOver.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Slingshot.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/ennemies/LittleGreen.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/blocks/AverageWood.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/Bird.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/EndLevel.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/gameplay/background_1.jpg" type="Texture" id=2]
+[ext_resource path="res://scenes/Camera.gd" type="Script" id=3]
+[ext_resource path="res://EndLevel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Slingshot.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ennemies/LittleGreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/birds/Bird.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/blocks/LongWood.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Gameover.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 31.9734, 29.9184 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 85.2982, 718.186 )
-
-[sub_resource type="PhysicsMaterial" id=3]
-bounce = 0.2
-
-[sub_resource type="PhysicsMaterial" id=4]
-bounce = 0.2
-
-[sub_resource type="PhysicsMaterial" id=5]
-bounce = 0.2
+extents = Vector2( 140, 720 )
 
 [node name="Level" type="Node"]
 script = ExtResource( 1 )
-spot_scene = ExtResource( 2 )
-zoom_min = 1.0
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 1277.24, 719.248 )
-texture = ExtResource( 3 )
-
-[node name="GUI" parent="." instance=ExtResource( 4 )]
-
-[node name="GameOver" parent="." instance=ExtResource( 6 )]
-
-[node name="EndLevel" parent="." instance=ExtResource( 11 )]
-score_steps = {
-"1": 10000,
-"2": 15000,
-"3": 20000
-}
-
-[node name="Slingshot" parent="." instance=ExtResource( 7 )]
-position = Vector2( 574.099, 1143.54 )
-strength = 5.0
+position = Vector2( 1279.37, 716.676 )
+z_index = -10
+texture = ExtResource( 2 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2( 1283.66, 1352.21 )
-scale = Vector2( 40.0475, 3.26682 )
+position = Vector2( 1330, 1350 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+polygon = PoolVector2Array( -1330, -100, 1230, -100, 1230, 90, -1330, 90 )
+
+[node name="EastWall" type="StaticBody2D" parent="."]
+position = Vector2( 2700, 710 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EastWall"]
+position = Vector2( 0, 10 )
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 580.41, 1071.15 )
-scale = Vector2( 1, 1.02446 )
+[node name="WestWall" type="StaticBody2D" parent="."]
+position = Vector2( 2700, 710 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WestWall"]
+position = Vector2( -2840, 10 )
+shape = SubResource( 1 )
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 527.505, 1152.8 )
 current = true
 zoom = Vector2( 2, 2 )
 limit_left = 0
 limit_top = 0
-limit_right = 2550
-limit_bottom = 1400
+limit_right = 2560
+limit_bottom = 1440
 smoothing_enabled = true
-
-[node name="BirdchangeTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="TrajectoryTimer" type="Timer" parent="."]
-wait_time = 0.5
-
-[node name="EndLevelTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="WallEast" type="StaticBody2D" parent="."]
-position = Vector2( 4, 770.026 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallEast"]
-position = Vector2( -89.0621, -47.6086 )
-shape = SubResource( 2 )
-
-[node name="WallWest" type="StaticBody2D" parent="."]
-position = Vector2( 2737.41, 769.46 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallWest"]
-position = Vector2( -91.5796, -47.6087 )
-shape = SubResource( 2 )
+smoothing_speed = 10.0
+script = ExtResource( 3 )
 
 [node name="Birds" type="Node2D" parent="."]
-position = Vector2( 297.218, 1201.1 )
+position = Vector2( 551.34, 1221 )
 
-[node name="Bird" parent="Birds" instance=ExtResource( 10 )]
-position = Vector2( 130.244, 10.0701 )
-mass = 2.0
-physics_material_override = SubResource( 3 )
-_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pickable", "Transform" ]
+[node name="Bird" parent="Birds" instance=ExtResource( 7 )]
+position = Vector2( -194.597, 4.42261 )
 
-[node name="Bird2" parent="Birds" instance=ExtResource( 10 )]
-position = Vector2( 15.105, 12.5875 )
-physics_material_override = SubResource( 4 )
+[node name="Bird2" parent="Birds" instance=ExtResource( 7 )]
+position = Vector2( -290.033, 2.09497 )
 
-[node name="Bird3" parent="Birds" instance=ExtResource( 10 )]
-position = Vector2( -105.735, 17.6226 )
-physics_material_override = SubResource( 5 )
-
-[node name="Blocks" type="Node2D" parent="."]
-position = Vector2( 1916.67, 1010.1 )
-
-[node name="AverageWood2" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( -77.8959, 235.251 )
-
-[node name="AverageWood3" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( -77.8959, 63.2239 )
-
-[node name="AverageWood4" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( -146.373, 148.402 )
-rotation = 1.5708
-_sections_unfolded = [ "Transform" ]
-
-[node name="AverageWood6" parent="Blocks" instance=ExtResource( 9 )]
-position = Vector2( -7.7489, 148.402 )
-rotation = 1.5708
-_sections_unfolded = [ "Transform" ]
-
-[node name="WoodSquare" parent="Blocks" instance=ExtResource( 5 )]
-position = Vector2( -146.975, 16.7017 )
-
-[node name="WoodSquare2" parent="Blocks" instance=ExtResource( 5 )]
-position = Vector2( -10.021, 15.0315 )
+[node name="Bird3" parent="Birds" instance=ExtResource( 7 )]
+position = Vector2( -429.696, -0.232786 )
 
 [node name="Ennemies" type="Node2D" parent="."]
-position = Vector2( 1964.4, 1205.71 )
+position = Vector2( 1784.93, 1215.97 )
 
-[node name="Ennemy" parent="Ennemies" instance=ExtResource( 8 )]
-position = Vector2( -94.7112, -1.67017 )
-damage_intensity = 20
+[node name="LittleGreen" parent="Ennemies" instance=ExtResource( 6 )]
+position = Vector2( 203.521, -198.214 )
 
-[node name="Tween" type="Tween" parent="."]
-[connection signal="game_ended" from="GUI" to="." method="_on_GUI_game_ended"]
-[connection signal="game_restarted" from="GameOver" to="." method="_on_GameOver_game_restarted"]
-[connection signal="game_restarted" from="EndLevel" to="." method="_on_EndLevel_game_restarted"]
-[connection signal="timeout" from="BirdchangeTimer" to="." method="_on_BirdchangeTimer_timeout"]
-[connection signal="timeout" from="TrajectoryTimer" to="." method="_on_TrajectoryTimer_timeout"]
-[connection signal="timeout" from="EndLevelTimer" to="." method="_on_EndLevelTimer_timeout"]
+[node name="LittleGreen3" parent="Ennemies" instance=ExtResource( 6 )]
+position = Vector2( 208.13, -20.6334 )
+
+[node name="Blocks" type="Node2D" parent="."]
+position = Vector2( 2155.01, 1205.9 )
+
+[node name="LongWood" parent="Blocks" instance=ExtResource( 8 )]
+position = Vector2( -161.699, 28.8707 )
+
+[node name="LongWood4" parent="Blocks" instance=ExtResource( 8 )]
+position = Vector2( -165.475, -144.802 )
+
+[node name="LongWood2" parent="Blocks" instance=ExtResource( 8 )]
+position = Vector2( -235.969, -60.4078 )
+rotation = -1.5737
+
+[node name="LongWood3" parent="Blocks" instance=ExtResource( 8 )]
+position = Vector2( -92.5002, -58.5201 )
+rotation = -1.5737
+
+[node name="Slingshot" parent="." instance=ExtResource( 5 )]
+position = Vector2( 606.729, 1150.52 )
+TRAJECTORY_SPOT_COUNT = 10
+TRAJECTORY_TIME_STEP = 0.5
+STRENGTH = 5
+TRAJECTORY_IMPULSE = 75
+TRAJECTORY_ANGLE = 45
+TRAJECTORY_VISIBILITY = false
+
+[node name="GUI" parent="." instance=ExtResource( 10 )]
+
+[node name="EndLevel" parent="." instance=ExtResource( 4 )]
+score_levels = {
+1: 2000,
+2: 4000,
+3: 5500
+}
+
+[node name="Gameover" parent="." instance=ExtResource( 9 )]
+[connection signal="end_game" from="GUI" to="." method="_on_GUI_end_game"]
+[connection signal="restart_level" from="EndLevel" to="." method="_on_EndLevel_restart_level"]
+[connection signal="restart_level" from="Gameover" to="." method="_on_Gameover_restart_level"]
