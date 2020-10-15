@@ -26,3 +26,10 @@ func _on_EndLevelButton_pressed():
 
 func display_end_control():
 	endLevelButton.show()
+
+func hide():
+	for child in get_children():
+		if child.has_method("hide") : child.hide()
+func show():
+	for child in get_children():
+		if child.has_method("show") : child.show()

@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/slingshot_2.png-f85cb216118753abb296267a360a604a.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/gameplay/slingshot_2.png"
-source_md5="2ef3dfac37e2c9dd9e7c63056e8584ed"
-
 dest_files=[ "res://.import/slingshot_2.png-f85cb216118753abb296267a360a604a.stex" ]
-dest_md5="f46c9fbfe53751bfb50e79253952b23a"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

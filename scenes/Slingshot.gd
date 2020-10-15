@@ -1,6 +1,7 @@
 extends Node2D
 
-export(float, 5, 15) var strength = 9
+export(float, 2, 10) var strength = 6
+export(int, 1, 10) var strechness = 5
 
 var attached_bird
 
@@ -9,7 +10,7 @@ func _process(delta):
 	update_elastic_pos($Elastic1)
 	update_elastic_pos($Elastic2)
 		
-		
+
 	
 func get_strength():
 	return strength
@@ -23,11 +24,11 @@ func detach_bird() :
 func update_elastic_pos(elactic) :
 	var attached_pos = null
 	if attached_bird != null :
-		attached_pos = attached_bird.get_node("AttachPoint").get_global_transform().origin
+		attached_pos = attached_bird.get_node("AttachPoint").global_position
 	else :
-		attached_pos = $LaunchPoint.get_global_transform().origin
+		attached_pos = $LaunchPoint.global_position
 		
-	var elastic_pos_front = elactic.get_node("ElasticPoint").get_global_transform().origin;
+	var elastic_pos_front = elactic.get_node("ElasticPoint").global_position
 	var diff = attached_pos - elastic_pos_front
 	var middle_front = diff * 0.5
 	var sprite = elactic.get_node("Elastic");
@@ -35,8 +36,5 @@ func update_elastic_pos(elactic) :
 	sprite.scale.x = - middle_front.length() * 0.01
 	sprite.rotation = middle_front.angle()
 	
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func get_strechness():
+	return strechness

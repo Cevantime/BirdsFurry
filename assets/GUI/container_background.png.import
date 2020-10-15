@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/container_background.png-0ca3ca26a9dfed8d5eda3621d6880e04.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/GUI/container_background.png"
-source_md5="388a5b9054dff1a00e05608f6b1e8a0c"
-
 dest_files=[ "res://.import/container_background.png-0ca3ca26a9dfed8d5eda3621d6880e04.stex" ]
-dest_md5="f87875836c50994413f2b12f23dfd087"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

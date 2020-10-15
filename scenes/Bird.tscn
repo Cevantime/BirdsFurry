@@ -28,7 +28,7 @@ tracks/0/keys = {
 "values": [ Rect2( 86.5, 5.25, 78.75, 79.25 ), Rect2( 6.5, 5.25, 78.75, 79.25 ), Rect2( 86.5, 5.25, 78.75, 79.25 ) ]
 }
 
-[node name="Bird" type="RigidBody2D" groups=[
+[node name="Bird" type="RigidBody2D" index="0" groups=[
 "Birds",
 ]]
 
@@ -57,6 +57,7 @@ damage_intensity = 40
 explosion_scene = ExtResource( 2 )
 score_value = 0
 remaining_score = 5000
+transfer_speed = 500
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

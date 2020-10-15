@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/slot_start_3.png-8a80e6a3fb6eb806a58277b28cb02668.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/GUI/slot_start_3.png"
-source_md5="ec65e695d22497a1f5c623edc5973500"
-
 dest_files=[ "res://.import/slot_start_3.png-8a80e6a3fb6eb806a58277b28cb02668.stex" ]
-dest_md5="682525ddfa5b9b04d301366456d8e486"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

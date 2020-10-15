@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/background_1.jpg-3ab4c6402ba625e378fb29b0afc7b96b.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/gameplay/background_1.jpg"
-source_md5="74e338fc5e12f2f855f8ac72280c8997"
-
 dest_files=[ "res://.import/background_1.jpg-3ab4c6402ba625e378fb29b0afc7b96b.stex" ]
-dest_md5="1cb77cc594decfdf5c0d4d93a69ab1b7"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

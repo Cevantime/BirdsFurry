@@ -21,28 +21,28 @@ func _physics_process(delta):
 
 func get_damage_from(other):
 	var damage_mul = damage_intensity * 0.0015
-	
+
 	var velocity = old_velocity
-	
+
 	var damage = 0
-	
+
 	if(other.has_method("get_old_velocity")):
 		velocity += other.get_old_velocity()
 		damage = other.mass * velocity.length() * damage_mul
 	else :
 		damage = mass * velocity.length() * damage_mul
-		 
+
 	get_damage(damage)
-		
+
 func get_damage(damage) :
 	health -= int(damage)
 	if(health <= 0 and ! exploded):
 		explose()
-		
+
 func explose():
 	emit_signal("exploded", self)
 	disappear()
-	
+
 func disappear():
 	var expl = explosion_scene.instance()
 	expl.position = self.position
@@ -55,6 +55,6 @@ func get_old_velocity():
 
 func _on_Damageable_body_entered( body ):
 	get_damage_from(body)
-	
+
 func get_score_value():
 	return score_value

@@ -2,7 +2,6 @@
 
 [ext_resource path="res://assets/gameplay/elastic_tex.png" type="Texture" id=1]
 
-
 [node name="Elastic" type="Node2D"]
 
 [node name="Elastic" type="Sprite" parent="." index="0"]

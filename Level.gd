@@ -21,7 +21,6 @@ func _ready():
 	change_bird()
 	camera.current = true
 	camera.position = $Slingshot/LaunchPoint.global_position
-	bird.attach_to($Slingshot)
 	old_mouse_pos = $Background.get_global_mouse_position()
 	var block; var ennemi
 	var max_score = 0
@@ -44,6 +43,7 @@ func _ready():
 	$GUI.set_score(0)
 
 func _process(delta):
+	
 	var d_cam_pos = $Background.get_global_mouse_position() - old_mouse_pos
 	old_mouse_pos = $Background.get_global_mouse_position()
 	
@@ -65,8 +65,9 @@ func _process(delta):
 	
 	$GUI.set_score(animated_score)
 	
+	
 func _physics_process(delta):
-	if weakref(bird).get_ref() and bird != null and bird.is_dragged():
+	if bird != null and weakref(bird).get_ref() and bird.is_dragged():
 		clean_spots()
 		draw_trajectory()
 		
@@ -86,8 +87,8 @@ func compute_score(node):
 
 func change_bird():
 	bird = birds.pop_front()
-	bird.attach_to($Slingshot)
-	camera.position = bird.global_position
+	bird.next($Slingshot)
+	camera.position = $Slingshot/LaunchPoint.global_position
 	bird.connect("exploded", self, "_on_Bird_exploded")
 
 func clamp_zoom():
@@ -109,11 +110,14 @@ func _input(event):
 
 func draw_trajectory() :
 	var impulse = bird.get_impulse()
-	if(impulse.x > 0):
-		var start_pos = $Slingshot/LaunchPoint.global_position
-		for t in range(1, 11) :
-			var tt = t * 0.5
-			draw_spot(Vector2(impulse.x * tt + start_pos.x, 0.5 * 98 * tt * tt + impulse.y * tt + start_pos.y))
+	if impulse.x > 0 :
+		draw_impulse_spots(impulse)
+			
+func draw_impulse_spots(impulse):
+	var start_pos = $Slingshot/LaunchPoint.global_position
+	for t in range(1, 11) :
+		var tt = t * 0.5
+		draw_spot(Vector2(impulse.x * tt + start_pos.x, 0.5 * 98 * tt * tt + impulse.y * tt + start_pos.y))
 	
 func clean_spots() :
 	for spot in spots:
@@ -127,6 +131,7 @@ func draw_spot(pos) :
 	add_child(spot)
 	
 func level_end() :
+	bird = null
 	$GUI.display_end_control()
 	
 func inc_score(score_inc):
@@ -137,6 +142,11 @@ func inc_score(score_inc):
 		
 func reload_level():
 	get_tree().reload_current_scene()
+	
+
+func check_level_end():
+	if $Ennemies.get_children().size() == 0 or birds.size() == 0 :
+		level_end()
 
 func _on_Bird_exploded(bird):
 	_on_Bird_crashed()
@@ -167,6 +177,7 @@ func _on_Bird_launched( impulse ):
 func _on_Damageable_exploded(damageable):
 	if damageable.has_method("get_score_value"):
 		inc_score(damageable.get_score_value())
+		check_level_end()
 
 
 func _on_GUI_game_ended():
@@ -191,6 +202,7 @@ func _on_GameOver_game_restarted():
 
 func _on_EndLevelTimer_timeout():
 	$EndLevel.start(score)
+	$GUI.hide()
 
 
 func _on_EndLevel_game_restarted():

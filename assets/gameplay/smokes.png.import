@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/smokes.png-ca713841f7f5755944fdeaab56220bfc.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/gameplay/smokes.png"
-source_md5="b7e828d5ddc55416fed1d99fccd8f5e7"
-
 dest_files=[ "res://.import/smokes.png-ca713841f7f5755944fdeaab56220bfc.stex" ]
-dest_md5="c22bdfa6afe22309809e65e07b6d3615"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

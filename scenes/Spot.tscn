@@ -2,7 +2,6 @@
 
 [ext_resource path="res://assets/gameplay/spot_red.png" type="Texture" id=1]
 
-
 [node name="Spot" type="Sprite"]
 
 scale = Vector2( 0.2, 0.2 )

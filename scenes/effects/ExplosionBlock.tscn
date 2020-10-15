@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/gameplay/smokes.png" type="Texture" id=1]
 [ext_resource path="res://scenes/effects/ExplosionBlock.gd" type="Script" id=2]
 
-
 [sub_resource type="Animation" id=1]
 
 resource_name = "white"
@@ -23,7 +22,7 @@ tracks/0/keys = {
 "values": [ Rect2( 913, 248, 42, 42 ), Rect2( 859.5, 878, 49.5, 47.5 ), Rect2( 502, 561, 88, 80 ), Rect2( 1.5, 820.75, 114.5, 113.5 ), Rect2( -2, 586, 129, 123 ), Rect2( -7, 462, 133, 126 ), Rect2( 128, 152, 144, 140 ), Rect2( 407, 153, 127, 122 ) ]
 }
 
-[node name="ExplosionBlock" type="Sprite"]
+[node name="ExplosionBlock" type="Sprite" index="0"]
 
 position = Vector2( 242.321, 173.681 )
 scale = Vector2( 0.7, 0.7 )
